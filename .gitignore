@@ -16,3 +16,6 @@
 
 # sqlite3
 *.db
+
+# dep vendor
+vendor/
