@@ -24,6 +24,8 @@ func Router() {
 	// 第一引数にパス、第二引数にHandlerを登録する
 	router.GET("/", handler.GetAll)            // 一覧表示
 	router.POST("/", handler.Create)           // 新規作成
+	router.GET("/:id", handler.Edit)           // 編集画面
+	router.POST("/update/:id", handler.Update) // 更新
 	router.POST("/delete/:id", handler.Delete) // 削除
 
 	// Routerをhttp.Serverに接続し、HTTPリクエストのリスニングとサービスを開始する
