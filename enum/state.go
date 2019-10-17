@@ -11,7 +11,7 @@ const (
 	CLOSE
 )
 
-// Stringer interfaceを実装
+// Stringer interfaceを自前で実装する場合
 //func (state State) String() string  {
 //	switch state {
 //	case OPEN:
@@ -21,10 +21,10 @@ const (
 //	case CLOSE:
 //		return "CLOSE"
 //	}
-//	panic("Unknown State value.")
+//	panic("Unknown State value")
 //}
 
-// ツールを使用して実装
+// Stringer interfaceをツールで実装する場合
 // $ go get golang.org/x/tools/cmd/stringer
 // $ stringer -type State state.go
-// enum/state_string.go
+// enum/state_string.go が生成される
