@@ -26,6 +26,9 @@ func Initialize() {
 }
 
 func Get() *gorm.DB {
+	if db == nil {
+		Initialize()
+	}
 	return db
 }
 
