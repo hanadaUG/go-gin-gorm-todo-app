@@ -13,3 +13,10 @@ resolver:
   filename: resolver.go
   type: Resolver
 autobind: []
+
+# 追加
+models:
+  Task:
+    model: github.com/hanadaUG/go-gin-gorm-todo-app/models.Task
+  State:
+    model: github.com/hanadaUG/go-gin-gorm-todo-app/enum.State
