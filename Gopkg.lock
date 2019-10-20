@@ -2,6 +2,27 @@
 
 
 [[projects]]
+  digest = "1:ecb63d398130fee54aec9b9aa80df16b72c9d785255735bd5a30aa8889758a37"
+  name = "github.com/99designs/gqlgen"
+  packages = [
+    "complexity",
+    "graphql",
+    "graphql/introspection",
+    "handler",
+  ]
+  pruneopts = "UT"
+  revision = "efb6efe06c6e4fc706440acebf6f81fff85f295c"
+  version = "v0.10.1"
+
+[[projects]]
+  digest = "1:786e862ec180708b60ee670723e3edd969fd4309e7b1c315cd7de058ac62a011"
+  name = "github.com/agnivade/levenshtein"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "51b298ff305e72cfd29166dccc3f9878e82f9fdc"
+  version = "v1.0.2"
+
+[[projects]]
   digest = "1:a4b5a6b32f33323c7850fae4ec085a0fbac3be93c057b6b8cef5bcabe24645ac"
   name = "github.com/gin-contrib/sse"
   packages = ["."]
@@ -28,6 +49,25 @@
   pruneopts = "UT"
   revision = "c823c79ea1570fb5ff454033735a8e68575d1d0f"
   version = "v1.3.0"
+
+[[projects]]
+  digest = "1:e62657cca9badaa308d86e7716083e4c5933bb78e30a17743fc67f50be26f6f4"
+  name = "github.com/gorilla/websocket"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "c3e18be99d19e6b3e8f1559eea2c161a665c4b6b"
+  version = "v1.4.1"
+
+[[projects]]
+  digest = "1:c77361e611524ec8f2ad37c408c3c916111a70b6acf806a1200855696bf8fa4d"
+  name = "github.com/hashicorp/golang-lru"
+  packages = [
+    ".",
+    "simplelru",
+  ]
+  pruneopts = "UT"
+  revision = "7f827b33c0f158ec5dfbba01bb0b14a4541fd81d"
+  version = "v0.5.3"
 
 [[projects]]
   digest = "1:0ba2632215132e946413632241c2f9e67439addbe5f243b86bb81199bd15c8e9"
@@ -94,6 +134,22 @@
   version = "v1.1.4"
 
 [[projects]]
+  digest = "1:b4e8aaca88f799355f4ac560bce4293fb85ff21003dd0d5741ca503f7a788e91"
+  name = "github.com/vektah/gqlparser"
+  packages = [
+    ".",
+    "ast",
+    "gqlerror",
+    "lexer",
+    "parser",
+    "validator",
+    "validator/rules",
+  ]
+  pruneopts = "UT"
+  revision = "05741cdb0871330d8bc980d4afd21ab34eceee83"
+  version = "v1.1.2"
+
+[[projects]]
   branch = "master"
   digest = "1:7c927f17d868be652a4cfe7de23e4292dea5b14d974a1d536e3b7cb7e79fd695"
   name = "golang.org/x/sys"
@@ -121,9 +177,14 @@
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
+    "github.com/99designs/gqlgen/graphql",
+    "github.com/99designs/gqlgen/graphql/introspection",
+    "github.com/99designs/gqlgen/handler",
     "github.com/gin-gonic/gin",
     "github.com/jinzhu/gorm",
     "github.com/mattn/go-sqlite3",
+    "github.com/vektah/gqlparser",
+    "github.com/vektah/gqlparser/ast",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1
