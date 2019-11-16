@@ -2,11 +2,14 @@ package models
 
 import (
 	"github.com/hanadaUG/go-gin-gorm-todo-app/enum"
-	"github.com/jinzhu/gorm"
+	"time"
 )
 
 type Task struct {
-	gorm.Model
-	Text   string
-	Status enum.State
+	ID        int `gorm:"primary_key"`
+	CreatedAt time.Time
+	UpdatedAt time.Time
+	DeletedAt *time.Time `sql:"index"`
+	Text      string
+	Status    enum.State
 }
