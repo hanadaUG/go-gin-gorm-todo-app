@@ -3,6 +3,7 @@ package v1
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"github.com/hanadaUG/go-gin-gorm-todo-app/enum"
 	"github.com/hanadaUG/go-gin-gorm-todo-app/models"
 	"github.com/jinzhu/gorm"
 	"net/http"
@@ -24,6 +25,7 @@ func (handler *ApiTaskHandler) GetAll(c *gin.Context) {
 // $ curl -X POST -H "Content-Type: application/json" -d '{"text":"test"}' http://localhost:8080/api/v1/ | jsonpp
 func (handler *ApiTaskHandler) Create(c *gin.Context) {
 	task := models.Task{}
+	task.Status = enum.OPEN
 	err := c.BindJSON(&task)
 	if err != nil {
 		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -43,7 +45,7 @@ func (handler *ApiTaskHandler) Get(c *gin.Context) {
 }
 
 // 更新
-// $ curl -X PUT -H "Content-Type: application/json" -d '{"text":"update"}' http://localhost:8080/api/v1/1 | jsonpp
+// $ curl -X PUT -H "Content-Type: application/json" -d '{"text":"update", "status":2}' http://localhost:8080/api/v1/1 | jsonpp
 func (handler *ApiTaskHandler) Update(c *gin.Context) {
 	task := models.Task{}       // Task構造体の変数宣言
 	id := c.Param("id")         // idを取得
@@ -55,6 +57,7 @@ func (handler *ApiTaskHandler) Update(c *gin.Context) {
 		return
 	}
 	task.Text = request.Text     // textを上書きする
+	task.Status = request.Status // Statusを上書きする
 	handler.Db.Save(&task)       // 指定のレコードを更新する
 	c.JSON(http.StatusOK, &task) // JSONで結果を返す
 }

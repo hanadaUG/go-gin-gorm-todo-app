@@ -2,9 +2,11 @@ package controllers
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/hanadaUG/go-gin-gorm-todo-app/enum"
 	"github.com/hanadaUG/go-gin-gorm-todo-app/models"
 	"github.com/jinzhu/gorm"
 	"net/http"
+	"strconv"
 )
 
 type TaskHandler struct {
@@ -20,8 +22,8 @@ func (handler *TaskHandler) GetAll(c *gin.Context) {
 
 // 新規作成
 func (handler *TaskHandler) Create(c *gin.Context) {
-	text, _ := c.GetPostForm("text")            // index.htmlからtextを取得
-	handler.Db.Create(&models.Task{Text: text}) // レコードを挿入する
+	text, _ := c.GetPostForm("text")                               // index.htmlからtextを取得
+	handler.Db.Create(&models.Task{Text: text, Status: enum.OPEN}) // レコードを挿入する
 	c.Redirect(http.StatusMovedPermanently, "/")
 }
 
@@ -35,12 +37,15 @@ func (handler *TaskHandler) Edit(c *gin.Context) {
 
 // 更新
 func (handler *TaskHandler) Update(c *gin.Context) {
-	task := models.Task{}            // Task構造体の変数宣言
-	id := c.Param("id")              // edit.htmlからidを取得
-	text, _ := c.GetPostForm("text") // edit.htmlからtextを取得
-	handler.Db.First(&task, id)      // idに一致するレコードを取得する
-	task.Text = text                 // textを上書きする
-	handler.Db.Save(&task)           // 指定のレコードを更新する
+	task := models.Task{}                // Task構造体の変数宣言
+	id := c.Param("id")                  // edit.htmlからidを取得
+	text, _ := c.GetPostForm("text")     // edit.htmlからtextを取得
+	status, _ := c.GetPostForm("status") // edit.htmlからstatus(文字列 1~3)を取得
+	handler.Db.First(&task, id)          // idに一致するレコードを取得する
+	task.Text = text                     // textを上書きする
+	num, _ := strconv.Atoi(status)       // 数値に変換
+	task.Status = enum.State(num)        // statusを上書きする
+	handler.Db.Save(&task)               // 指定のレコードを更新する
 	c.Redirect(http.StatusMovedPermanently, "/")
 }
 
